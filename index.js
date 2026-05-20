@@ -6,19 +6,16 @@ const fs = require('fs')
 const app = express()
 
 const config = {
-    channelAccessToken: 'TxaaHKNfaeO4WjuVGTt/dXtOGbjLYCdOznOt5O0tKReZ7WhRhG4DIuPTNpMNqnmvTUXzvFufQHvts3wwf5BFUoA86cmiRlWNIDR1siOq5Z3UERU7PDxAX7yA6pWrsMigIAN0exNI7mOXo8I0FAhOVAdB04t89/1O/w1cDnyilFU=',
+    channelAccessToken: '03/7FzGdtIi8YtyMhR/DrkbQOGZvrRkcOAx6f7Yf+ECK0tixmNvKgFCvj4aSv0ilTUXzvFufQHvts3wwf5BFUoA86cmiRlWNIDR1siOq5Z33poSNzC3m8Q3GEkaWzox97r7CPkbi6+zdwIJ9A0uS8AdB04t89/1O/w1cDnyilFU=',
     channelSecret: '87569dd644dd6b98295d1fbd06af35da'
 }
-
-const client = new line.messagingApi.MessagingApiClient(config)
+const client = new line.Client(config)
 
 const fileName = 'money.xlsx'
 
 // 👉 Excel function
 async function saveToExcel(type, text, amount) {
     const workbook = new ExcelJS.Workbook()
-    console.log('Excel saved:', fileName)
-    console.log("VERSION 2 LOADED")
 
     let sheet
 
@@ -30,7 +27,6 @@ async function saveToExcel(type, text, amount) {
             sheet = workbook.addWorksheet('data')
             sheet.addRow(['วันที่', 'ประเภท', 'รายการ', 'จำนวน'])
         }
-
     } else {
         sheet = workbook.addWorksheet('data')
         sheet.addRow(['วันที่', 'ประเภท', 'รายการ', 'จำนวน'])
