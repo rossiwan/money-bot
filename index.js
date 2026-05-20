@@ -6,7 +6,7 @@ const fs = require('fs')
 const app = express() // ❗ สำคัญมาก ต้องมี
 
 const config = {
-    channelAccessToken: '03/7FzGdtIi8YtyMhR/DrkbQOGZvrRkcOAx6f7Yf+ECK0tixmNvKgFCvj4aSv0ilTUXzvFufQHvts3wwf5BFUoA86cmiRlWNIDR1siOq5Z33poSNzC3m8Q3GEkaWzox97r7CPkbi6+zdwIJ9A0uS8AdB04t89/1O/w1cDnyilFU=',
+    channelAccessToken: '2efBh4kOjX2DAiO4OkJF70r0+AnaGy4B01owxWgo3+UY20o6E430gtlXTzSlA2obTUXzvFufQHvts3wwf5BFUoA86cmiRlWNIDR1siOq5Z3ssdLqb/dloNY1OH1HFtuu8l0+E5U3/yFMThUT1m120gdB04t89/1O/w1cDnyilFU=',
     channelSecret: '87569dd644dd6b98295d1fbd06af35da'
 }
 
