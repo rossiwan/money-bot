@@ -7,11 +7,14 @@ const config = {
     channelAccessToken: 'AUr+0gg7WV5q+qWrwqqj1yxe2QCnEnSEIMs2x9r9jUGKmf+mAae85H+pLsDDAJ4ZTUXzvFufQHvts3wwf5BFUoA86cmiRlWNIDR1siOq5Z0KHDFEEemzUNL5M5KvOffrGRFnb2Yfiat83bVU84H/DQdB04t89/1O/w1cDnyilFU='
 }
 
-const client = new line.messagingApi.MessagingApiClient(config)
+const client = new line.Client(config)
 
-app.post('/webhook', express.json(), async (req, res) => {
+app.post('/webhook', line.middleware(config), async (req, res) => {
 
     const events = req.body.events
+
+    // ตอบทันที กัน timeout
+    res.sendStatus(200)
 
     for (const event of events) {
 
@@ -21,19 +24,12 @@ app.post('/webhook', express.json(), async (req, res) => {
 
             console.log(userMessage)
 
-            await client.replyMessage({
-                replyToken: event.replyToken,
-                messages: [
-                    {
-                        type: 'text',
-                        text: `ได้รับข้อความ: ${userMessage}`
-                    }
-                ]
+            await client.replyMessage(event.replyToken, {
+                type: 'text',
+                text: `ได้รับข้อความ: ${userMessage}`
             })
         }
     }
-
-    res.status(200).send('OK')
 })
 
 app.get('/', (req, res) => {
