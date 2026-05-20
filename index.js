@@ -18,6 +18,7 @@ const fileName = 'money.xlsx'
 async function saveToExcel(type, text, amount) {
     const workbook = new ExcelJS.Workbook()
     console.log('Excel saved:', fileName)
+    console.log("VERSION 2 LOADED")
 
     let sheet
 
