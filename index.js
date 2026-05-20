@@ -6,8 +6,8 @@ const fs = require('fs')
 const app = express()
 
 const config = {
-    channelAccessToken: 'xuy62G++oBT6T/COCb0I250rPlMbw9hNr244bbXsqTTTXTjhXum6GIo3tBbSTQmpTUXzvFufQHvts3wwf5BFUoA86cmiRlWNIDR1siOq5Z255YUNKxpt822Gtfdwp/7ciHKQhiotQibf+a+MvATw3AdB04t89/1O/w1cDnyilFU=',
-    channelSecret: 'xuy62G++oBT6T/COCb0I250rPlMbw9hNr244bbXsqTTTXTjhXum6GIo3tBbSTQmpTUXzvFufQHvts3wwf5BFUoA86cmiRlWNIDR1siOq5Z255YUNKxpt822Gtfdwp/7ciHKQhiotQibf+a+MvATw3AdB04t89/1O/w1cDnyilFU='
+    channelAccessToken: 'TxaaHKNfaeO4WjuVGTt/dXtOGbjLYCdOznOt5O0tKReZ7WhRhG4DIuPTNpMNqnmvTUXzvFufQHvts3wwf5BFUoA86cmiRlWNIDR1siOq5Z3UERU7PDxAX7yA6pWrsMigIAN0exNI7mOXo8I0FAhOVAdB04t89/1O/w1cDnyilFU=',
+    channelSecret: '87569dd644dd6b98295d1fbd06af35da'
 }
 
 const client = new line.messagingApi.MessagingApiClient(config)
