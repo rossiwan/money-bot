@@ -7,7 +7,7 @@ const app = express()
 
 const config = {
     channelAccessToken: 'xuy62G++oBT6T/COCb0I250rPlMbw9hNr244bbXsqTTTXTjhXum6GIo3tBbSTQmpTUXzvFufQHvts3wwf5BFUoA86cmiRlWNIDR1siOq5Z255YUNKxpt822Gtfdwp/7ciHKQhiotQibf+a+MvATw3AdB04t89/1O/w1cDnyilFU=',
-    channelSecret: '7b4c5b52bd1fe76cf876ba504074e053'
+    channelSecret: 'xuy62G++oBT6T/COCb0I250rPlMbw9hNr244bbXsqTTTXTjhXum6GIo3tBbSTQmpTUXzvFufQHvts3wwf5BFUoA86cmiRlWNIDR1siOq5Z255YUNKxpt822Gtfdwp/7ciHKQhiotQibf+a+MvATw3AdB04t89/1O/w1cDnyilFU='
 }
 
 const client = new line.messagingApi.MessagingApiClient(config)
