@@ -1,5 +1,7 @@
 const express = require('express')
 const line = require('@line/bot-sdk')
+const ExcelJS = require('exceljs')
+const fs = require('fs')
 
 const app = express()
 
@@ -10,6 +12,40 @@ const config = {
 
 const client = new line.messagingApi.MessagingApiClient(config)
 
+const fileName = 'money.xlsx'
+
+// 👉 Excel function
+async function saveToExcel(type, text, amount) {
+    const workbook = new ExcelJS.Workbook()
+    console.log('Excel saved:', fileName)
+
+    let sheet
+
+    if (fs.existsSync(fileName)) {
+        await workbook.xlsx.readFile(fileName)
+        sheet = workbook.getWorksheet('data')
+
+        if (!sheet) {
+            sheet = workbook.addWorksheet('data')
+            sheet.addRow(['วันที่', 'ประเภท', 'รายการ', 'จำนวน'])
+        }
+
+    } else {
+        sheet = workbook.addWorksheet('data')
+        sheet.addRow(['วันที่', 'ประเภท', 'รายการ', 'จำนวน'])
+    }
+
+    sheet.addRow([
+        new Date().toLocaleString(),
+        type,
+        text,
+        amount
+    ])
+
+    await workbook.xlsx.writeFile(fileName)
+}
+
+// 👉 webhook
 app.post('/webhook', express.json(), async (req, res) => {
 
     res.sendStatus(200)
@@ -20,16 +56,23 @@ app.post('/webhook', express.json(), async (req, res) => {
 
         if (event.type === 'message' && event.message.type === 'text') {
 
-            const text = event.message.text
+            const msg = event.message.text
 
-            console.log(text)
+            console.log('user:', msg)
+
+            const parts = msg.split(' ')
+            const amount = parseInt(parts[parts.length - 1])
+            const text = parts.slice(0, -1).join(' ')
+            const type = 'expense'
+
+            await saveToExcel(type, text, amount)
 
             await client.replyMessage({
                 replyToken: event.replyToken,
                 messages: [
                     {
                         type: 'text',
-                        text: `รับแล้ว: ${text}`
+                        text: `บันทึกแล้ว: ${text} ${amount} บาท`
                     }
                 ]
             })
@@ -37,6 +80,7 @@ app.post('/webhook', express.json(), async (req, res) => {
     }
 })
 
+// 👉 home
 app.get('/', (req, res) => {
     res.send('Bot is working')
 })
