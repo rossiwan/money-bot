@@ -4,36 +4,41 @@ const line = require('@line/bot-sdk')
 const app = express()
 
 const config = {
-    channelAccessToken: 'D3Gea//WRkiLoACkXYHsHRsccGsNdwPMw4L/f2uWHaBlk662FiqvMZFjqAPSSaStTUXzvFufQHvts3wwf5BFUoA86cmiRlWNIDR1siOq5Z0NOX+Ozra1JIuVOlVEHK/0nicDeP/ssjkpfKUIg6bEhQdB04t89/1O/w1cDnyilFU='
+    channelAccessToken: 'xuy62G++oBT6T/COCb0I250rPlMbw9hNr244bbXsqTTTXTjhXum6GIo3tBbSTQmpTUXzvFufQHvts3wwf5BFUoA86cmiRlWNIDR1siOq5Z255YUNKxpt822Gtfdwp/7ciHKQhiotQibf+a+MvATw3AdB04t89/1O/w1cDnyilFU=',
+    channelSecret: '7b4c5b52bd1fe76cf876ba504074e053'
 }
 
-const client = new line.Client(config)
+const client = new line.messagingApi.MessagingApiClient(config)
 
-app.post('/webhook', line.middleware(config), async (req, res) => {
+app.post('/webhook', express.json(), async (req, res) => {
+
+    res.sendStatus(200)
 
     const events = req.body.events
-
-    // ตอบทันที กัน timeout
-    res.sendStatus(200)
 
     for (const event of events) {
 
         if (event.type === 'message' && event.message.type === 'text') {
 
-            const userMessage = event.message.text
+            const text = event.message.text
 
-            console.log(userMessage)
+            console.log(text)
 
-            await client.replyMessage(event.replyToken, {
-                type: 'text',
-                text: `ได้รับข้อความ: ${userMessage}`
+            await client.replyMessage({
+                replyToken: event.replyToken,
+                messages: [
+                    {
+                        type: 'text',
+                        text: `รับแล้ว: ${text}`
+                    }
+                ]
             })
         }
     }
 })
 
 app.get('/', (req, res) => {
-    res.send('Money Bot Working!')
+    res.send('Bot is working')
 })
 
 app.listen(3000, () => {
