@@ -3,12 +3,13 @@ const line = require('@line/bot-sdk')
 const ExcelJS = require('exceljs')
 const fs = require('fs')
 
-const app = express()
+const app = express() // ❗ สำคัญมาก ต้องมี
 
 const config = {
     channelAccessToken: '03/7FzGdtIi8YtyMhR/DrkbQOGZvrRkcOAx6f7Yf+ECK0tixmNvKgFCvj4aSv0ilTUXzvFufQHvts3wwf5BFUoA86cmiRlWNIDR1siOq5Z33poSNzC3m8Q3GEkaWzox97r7CPkbi6+zdwIJ9A0uS8AdB04t89/1O/w1cDnyilFU=',
     channelSecret: '87569dd644dd6b98295d1fbd06af35da'
 }
+
 const client = new line.Client(config)
 
 const fileName = 'money.xlsx'
