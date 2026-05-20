@@ -4,7 +4,7 @@ const line = require('@line/bot-sdk')
 const app = express()
 
 const config = {
-    channelAccessToken: 'AUr+0gg7WV5q+qWrwqqj1yxe2QCnEnSEIMs2x9r9jUGKmf+mAae85H+pLsDDAJ4ZTUXzvFufQHvts3wwf5BFUoA86cmiRlWNIDR1siOq5Z0KHDFEEemzUNL5M5KvOffrGRFnb2Yfiat83bVU84H/DQdB04t89/1O/w1cDnyilFU='
+    channelAccessToken: 'D3Gea//WRkiLoACkXYHsHRsccGsNdwPMw4L/f2uWHaBlk662FiqvMZFjqAPSSaStTUXzvFufQHvts3wwf5BFUoA86cmiRlWNIDR1siOq5Z0NOX+Ozra1JIuVOlVEHK/0nicDeP/ssjkpfKUIg6bEhQdB04t89/1O/w1cDnyilFU='
 }
 
 const client = new line.Client(config)
